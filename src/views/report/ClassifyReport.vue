@@ -1,7 +1,7 @@
 <template>
   <div>
     <echart1
-      title="柱形图"
+      title="不同分类下文章和商品的数量柱形图"
       :barData="barData"
       :legendName="legendName"
     ></echart1>
@@ -19,7 +19,7 @@ export default {
   data() {
     return {
       dateValue: "",
-      pieTitle: "天湖区网点存款份额",
+      pieTitle: "",
       legendName: [],
       barData: [],
     };

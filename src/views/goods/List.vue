@@ -19,14 +19,18 @@
             v-model="queryInfo.query"
             class="input-with-select"
             clearable
-            @change="getGoods"
+            @input="getGoods"
           >
-            <el-button slot="append" icon="el-icon-search"></el-button>
+            <el-button
+              @click="getGoods"
+              slot="append"
+              icon="el-icon-search"
+            ></el-button>
           </el-input>
         </el-col>
-        <el-col :span="4">
+        <!--  <el-col :span="4">
           <el-button type="primary" @click="toAdd()">添加商品</el-button>
-        </el-col>
+        </el-col> -->
         <el-col :span="5">
           <classify-select
             @changeClassify="changeClassify"
@@ -82,8 +86,9 @@ export default {
         },
       ],
       queryInfo: {
-        column: "",
+        column: "title",
         query: "", //	查询参数	可以为空
+        class_id: 0, //分类id 当他为-1时，显示全部分类
         pagenum: 1, //	当前页码	不能为空
         pagesize: 10, //每页显示条数	不能为空
       },
@@ -128,13 +133,12 @@ export default {
       this.$router.push({ name: "goods/addGoods" });
     },
     changeClassify(e) {
-      this.queryInfo.query = e.class_id;
-      this.queryInfo.column = "class_id";
+      this.queryInfo.class_id = e.class_id;
       this.getGoods();
       console.log(e);
     },
     clearClassify() {
-      this.queryInfo.query = "";
+      this.queryInfo.class_id = 0;
       this.getGoods();
     },
   },

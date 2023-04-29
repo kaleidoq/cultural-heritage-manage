@@ -10,10 +10,12 @@
       <!-- <el-table-column sortable type="index"> </el-table-column> -->
       <el-table-column prop="article_id" label="文章id" width="170">
         <template slot-scope="scope">
-          {{ scope.row.article_id }}
-          <el-button size="mini" @click="showArticle(scope.row.article_id)">
-            查看文章</el-button
-          >
+          <span v-if="scope.row.parent_comment_id == 0">
+            {{ scope.row.article_id }}
+            <el-button size="mini" @click="showArticle(scope.row.article_id)">
+              查看文章</el-button
+            >
+          </span>
         </template>
       </el-table-column>
       <el-table-column prop="comment_content" label="评论内容" width="380">
